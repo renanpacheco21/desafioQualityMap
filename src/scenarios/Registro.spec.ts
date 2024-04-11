@@ -15,8 +15,10 @@ test.describe('Teste de Preenchimento do Registro', () => {
     await page.goto(BASE_URL);
   });
 
-  test('Registro de um novo usuário', async () => {
-    await registroPage.Dado_que_acesso_a_pagina_registro();
-    await registroPage.Quando_preencho_o_registro();
+  test('Register new user successfully', async () => {
+    await registroPage.Given_that_access_to_registration_page();
+    await registroPage.When_I_complete_the_registration();
+    await registroPage.And_validates_the_completed_date_of_birth();
+    await registroPage.Then_validate_the_registration_completed();
   });
 });

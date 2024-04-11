@@ -42,4 +42,28 @@ export default class RegistroElements extends BaseElements {
   getCompanyName(): Locator {
     return this.page.locator('#Company');
   }
+
+  getNewsletter(): Locator {
+    return this.page.locator('#Newsletter');
+  }
+
+  getPassword(): Locator {
+    return this.page.locator('#Password');
+  }
+
+  getConfirmPassword(): Locator {
+    return this.page.locator('#ConfirmPassword');
+  }
+
+  getButtomRegister(): Locator {
+    return this.page.locator('#register-button');
+  }
+
+  getMsgRegistrationCompleted(): Locator {
+    return this.page.locator('text=Your registration completed');
+  }
+
+  getButtomContinue(): Locator {
+    return this.page.locator('text=continue');
+  }
 }
