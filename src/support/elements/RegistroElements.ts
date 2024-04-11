@@ -19,8 +19,16 @@ export default class RegistroElements extends BaseElements {
     return this.page.locator('#FirstName');
   }
 
+  getFirstNameError(): Locator {
+    return this.page.locator('#FirstName-error');
+  }
+
   getLastName(): Locator {
     return this.page.locator('#LastName');
+  }
+
+  getLastNameError(): Locator {
+    return this.page.locator('#LastName-error');
   }
 
   getDay(): Locator {
@@ -39,6 +47,10 @@ export default class RegistroElements extends BaseElements {
     return this.page.locator('#Email');
   }
 
+  getEmailRequiredError(): Locator {
+    return this.page.locator('#Email-error');
+  }
+
   getCompanyName(): Locator {
     return this.page.locator('#Company');
   }
@@ -51,8 +63,16 @@ export default class RegistroElements extends BaseElements {
     return this.page.locator('#Password');
   }
 
+  getPasswordRequiredError(): Locator {
+    return this.page.locator('#Password-error');
+  }
+
   getConfirmPassword(): Locator {
     return this.page.locator('#ConfirmPassword');
+  }
+
+  getConfirmPasswordRequiredError(): Locator {
+    return this.page.locator('#ConfirmPassword-error');
   }
 
   getButtomRegister(): Locator {
