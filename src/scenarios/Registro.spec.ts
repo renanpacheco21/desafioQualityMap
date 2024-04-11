@@ -15,7 +15,8 @@ test.describe('Teste de Preenchimento do Registro', () => {
     await page.goto(BASE_URL);
   });
 
-  test('Formulário de Cadastro de Estudante', async () => {
-    await registroPage.Dado_que_estou_na_pagina_registro();
+  test('Registro de um novo usuário', async () => {
+    await registroPage.Dado_que_acesso_a_pagina_registro();
+    await registroPage.Quando_preencho_o_registro();
   });
 });

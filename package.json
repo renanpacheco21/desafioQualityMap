@@ -30,8 +30,9 @@
         "format": "prettier --write \"**/**.[jt]s?(x)\"",
         "verify": "prettier --check \"**/**.[jt]s?(x)\"",
         "lint": "npx eslint \"**/**.[jt]s?(x)\"",
-        "test": "npx playwright test src/scenarios/Registro.spec.ts --output artifacts/media --workers 1",
+        "test": "npx playwright test src/scenarios/* --output artifacts/media --workers 1",
         "show-report": "npx playwright show-report artifacts/report",
-        "ci": "npm run clean && npm run format && npm run verify && npm run lint && npm run test"
+        "ci": "npm run clean && npm run format && npm run verify && npm run lint && npm run test",
+        "test:specRegistro": "npx playwright test src/scenarios/Registro.spec.ts --output artifacts/media --workers 1"
     }
 }

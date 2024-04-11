@@ -12,7 +12,8 @@ Frontend and Backend automation project using Playwright
 
 ### Running Tests
 1. Execute `npm run ci` to run the entire test suite.
-2. Use `npm run show-report` to visualize the generated reports.
+2. Execute `npm run test:specExample` to run specific test. For example `npm run test:specRegistro`
+3. Use `npm run show-report` to visualize the generated reports.
 
 All generated artifacts can be found in the `./artifacts` directory. To remove these files, run `npm run clean`.
 
