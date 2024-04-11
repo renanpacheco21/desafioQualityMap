@@ -22,6 +22,7 @@ export default class RegistroPage extends BasePage {
     await this.registroElements.getMonth().type('April');
     await this.registroElements.getYear().type('1994');
     await this.registroElements.getEmail().type('teste@teste.br');
+    await this.registroElements.getCompanyName().type('QA-Automation');
   }
 }
 

@@ -38,4 +38,8 @@ export default class RegistroElements extends BaseElements {
   getEmail(): Locator {
     return this.page.locator('#Email');
   }
+
+  getCompanyName(): Locator {
+    return this.page.locator('#Company');
+  }
 }
