@@ -71,7 +71,7 @@ test.describe('ServeRest API', async () => {
   });
 
   test.describe('Products', () => {
-    test('Register a new product', async () => {
+    test('POST - Register a new product', async () => {
       idProduto = await p
         .spec()
         .post(`${baseUrl}/produtos`)
@@ -99,7 +99,7 @@ test.describe('ServeRest API', async () => {
         })
         .returns('_id');
     });
-    test('Search for the new registered product', async () => {
+    test('GET - Search for the new registered product', async () => {
       await p
         .spec()
         .get(`${baseUrl}/produtos/${idProduto}`)
@@ -107,7 +107,7 @@ test.describe('ServeRest API', async () => {
         .withHeaders('monitor', false)
         .expectStatus(StatusCodes.OK);
     });
-    test('Update an existing product', async () => {
+    test('PUT - Update an existing product', async () => {
       await p
         .spec()
         .put(`${baseUrl}/produtos/${idProduto}`)
@@ -125,7 +125,7 @@ test.describe('ServeRest API', async () => {
   });
 
   test.describe('Carts', () => {
-    test('Add a new cart', async () => {
+    test('POST - Add a new cart', async () => {
       await p
         .spec()
         .post(`${baseUrl}/carrinhos`)
@@ -142,7 +142,7 @@ test.describe('ServeRest API', async () => {
         .expectStatus(StatusCodes.CREATED)
         .expectBodyContains('Cadastro realizado com sucesso');
     });
-    test('Invalid cart', async () => {
+    test('GET - Invalid cart', async () => {
       await p
         .spec()
         .get(`${baseUrl}/carrinhos/qbMqntef4iTO1wWgg`)
@@ -151,7 +151,7 @@ test.describe('ServeRest API', async () => {
         .expectStatus(StatusCodes.BAD_REQUEST)
         .expectBodyContains('Carrinho não encontrado');
     });
-    test('Complete the purchase and delete the cart', async () => {
+    test('DELETE - Complete the purchase and delete the cart', async () => {
       await p
         .spec()
         .delete(`${baseUrl}/carrinhos/concluir-compra`)
