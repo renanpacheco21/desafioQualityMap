@@ -3,7 +3,7 @@ import { join } from 'path';
 import { TheConfig } from 'sicolo';
 import RegistroPage from '../support/pages/RegistroPage';
 
-test.describe('Teste de Preenchimento do Registro', () => {
+test.describe('Registration completion test', () => {
   let registroPage: RegistroPage;
   const CONFIG = join(__dirname, '../support/fixtures/config.yml');
   const BASE_URL = TheConfig.fromFile(CONFIG)

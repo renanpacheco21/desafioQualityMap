@@ -17,13 +17,13 @@ export default class RegistroPage extends BasePage {
 
   async When_I_complete_the_registration(): Promise<void> {
     await this.registroElements.getGenderMale().click();
-    await this.registroElements.getFirstName().fill('Joao');
-    await this.registroElements.getLastName().fill('Silva');
+    await this.registroElements.getFirstName().fill(faker.name.firstName());
+    await this.registroElements.getLastName().fill(faker.name.lastName());
     await this.registroElements.getDay().type('10');
     await this.registroElements.getMonth().type('April');
     await this.registroElements.getYear().type('1994');
     await this.registroElements.getEmail().fill(faker.internet.email());
-    await this.registroElements.getCompanyName().fill('QA-Automation');
+    await this.registroElements.getCompanyName().fill(faker.name.jobArea());
     await this.registroElements.getNewsletter().click();
     await this.registroElements.getPassword().fill('123456');
     await this.registroElements.getConfirmPassword().fill('123456');
@@ -44,6 +44,11 @@ export default class RegistroPage extends BasePage {
     await this.When_confirm_the_registration();
   }
 
+  async When_typing_incomplete_email(): Promise<void> {
+    await this.registroElements.getEmail().fill('teste123');
+    await this.When_confirm_the_registration();
+  }
+
   async And_validates_the_completed_date_of_birth(): Promise<void> {
     const selectedDay = await this.registroElements.getDay().inputValue();
     expect(selectedDay).toBe('10');
@@ -51,6 +56,11 @@ export default class RegistroPage extends BasePage {
     expect(selectedMonth).toBe('4');
     const selectedYear = await this.registroElements.getYear().inputValue();
     expect(selectedYear).toBe('1994');
+  }
+
+  async And_enter_incomplete_email(): Promise<void> {
+    await this.registroElements.getEmail().fill('teste@r');
+    await this.When_confirm_the_registration();
   }
 
   async Then_validate_the_registration_completed(): Promise<void> {
@@ -94,10 +104,10 @@ export default class RegistroPage extends BasePage {
   }
 
   async Then_validate_the_password_character_rule(): Promise<void> {
-    const passwordRequiredErrorElement =
+    const passwordIncorrectErrorElement =
       await this.registroElements.getPasswordRequiredError();
-    expect(await passwordRequiredErrorElement.isVisible()).toBe(true);
-    expect(await passwordRequiredErrorElement.innerText()).toEqual(
+    expect(await passwordIncorrectErrorElement.isVisible()).toBe(true);
+    expect(await passwordIncorrectErrorElement.innerText()).toEqual(
       `Password must meet the following rules:
 
 must have at least 6 characters`
@@ -105,11 +115,27 @@ must have at least 6 characters`
   }
 
   async Then_validate_password_confirmation(): Promise<void> {
-    const passwordRequiredErrorElement =
+    const confirmPasswordIncorrectErrorElement =
       await this.registroElements.getConfirmPasswordRequiredError();
-    expect(await passwordRequiredErrorElement.isVisible()).toBe(true);
-    expect(await passwordRequiredErrorElement.innerText()).toEqual(
+    expect(await confirmPasswordIncorrectErrorElement.isVisible()).toBe(true);
+    expect(await confirmPasswordIncorrectErrorElement.innerText()).toEqual(
       'The password and confirmation password do not match.'
+    );
+  }
+
+  async Then_validate_the_incorrect_email(): Promise<void> {
+    const emailIncorrectErrorElement =
+      await this.registroElements.getEmailRequiredError();
+    expect(await emailIncorrectErrorElement.isVisible()).toBe(true);
+    expect(await emailIncorrectErrorElement.innerText()).toEqual('Wrong email');
+  }
+
+  async Then_validate_the_incorrect_email_in_the_complete_registration(): Promise<void> {
+    const emailRequiredErrorTopElement =
+      await this.registroElements.getGeneralErrorEmail();
+    expect(await emailRequiredErrorTopElement.isVisible()).toBe(true);
+    expect(await emailRequiredErrorTopElement.innerText()).toEqual(
+      'Wrong email'
     );
   }
 }

@@ -51,6 +51,10 @@ export default class RegistroElements extends BaseElements {
     return this.page.locator('#Email-error');
   }
 
+  getGeneralErrorEmail(): Locator {
+    return this.page.locator('.message-error');
+  }
+
   getCompanyName(): Locator {
     return this.page.locator('#Company');
   }
